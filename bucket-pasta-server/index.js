@@ -1,12 +1,18 @@
 'use strict'
 const express = require('express')
+const clipboard = require('./resources/sample-clipboard.js');
 
 // Create the express app
 const app = express()
 
 // Routes and middleware
 // app.use(/* ... */)
-// app.get(/* ... */)
+app.get('/getClipboard', function (req,res) {
+  response.send(clipboard);
+  res.status(200).send();
+});
+
+console.log(clipboard);
 
 // Error handlers
 app.use(function fourOhFourHandler (req, res) {
