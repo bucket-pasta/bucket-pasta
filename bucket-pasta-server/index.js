@@ -1,12 +1,15 @@
 'use strict'
 const express = require('express');
 const clipboard = require('./resources/sample-clipboard.js');
+const cors = require('cors');
 
 // Create the express app
 const app = express();
 
 // Routes and middleware
 // app.use(/* ... */)
+app.use(cors());
+
 app.get('/clipboard', function (req,res) {
   res.send(clipboard);
   res.status(200).send();
