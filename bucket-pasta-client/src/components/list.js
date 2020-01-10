@@ -9,14 +9,11 @@ export default (props) => {
   useEffect(() => {
     axios.get(`http://localhost:1234/clipboard`)
       .then(res => {
-        // console.log(res.data.clipboard);
         const clipboardResponse = res.data.clipboard;
         setClipboard(clipboardResponse);
         console.log(clipboard);
       })
     }, [])
-
-  // return < div />;
 
   return (
     <ul>
@@ -24,15 +21,3 @@ export default (props) => {
     </ul>
   );
 }
-
-
-// export default (unicorn) => {
-
-//   return (
-//   <ul>
-//     { unicorn.list.map((val,idx) => {
-//       return 
-//     })}
-//     </ul>
-//   );
-// }
