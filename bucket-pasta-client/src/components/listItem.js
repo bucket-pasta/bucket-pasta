@@ -8,7 +8,9 @@ export default (props) => {
   return (
     <li className="listItems">
       <div className="listItemText">{props.text}</div>
-      <button onClick={() => copyToClipboard(props.text)}><FontAwesomeIcon icon={faCopy} /></button>
+      <button onClick={() => copyToClipboard(props.text)}>
+      <FontAwesomeIcon icon={faCopy} />
+      </button>
     </li>
   );
 }
