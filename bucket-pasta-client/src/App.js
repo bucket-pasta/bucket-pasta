@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import List from './components/list.js';
+import Tab from './components/tab.js';
 
 function App() {
   let arr = ["hello", "goodbye", "oof", "yikes"];
-  return (<List list={arr}/>);
+  return (<Tab list={arr}/>);
 }
 
 export default App;

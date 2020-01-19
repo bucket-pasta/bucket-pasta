@@ -1,6 +1,6 @@
 'use strict'
 const express = require('express');
-const clipboard = require('./resources/sample-clipboard.js');
+const clipboard = require('./resources/sampleUserObject.js');
 const cors = require('cors');
 
 // Create the express app
