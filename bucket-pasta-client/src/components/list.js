@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import ListItem from './listItem';
+import './list.scss'
 
 export default (props) => {
   const [clipboard, setClipboard] = useState([]);
@@ -14,9 +15,8 @@ export default (props) => {
         setClipboard(clipboardResponse);
         console.log(clipboard);
       })
-    }, [])
+    }, [clipboard])
 
-  // return < div />;
 
   return (
     <ul>
@@ -24,15 +24,3 @@ export default (props) => {
     </ul>
   );
 }
-
-
-// export default (unicorn) => {
-
-//   return (
-//   <ul>
-//     { unicorn.list.map((val,idx) => {
-//       return 
-//     })}
-//     </ul>
-//   );
-// }
