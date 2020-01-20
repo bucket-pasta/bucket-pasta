@@ -5,16 +5,26 @@ const cors = require('cors');
 
 // Create the express app
 const app = express();
+const bodyParser = require('body-parser')
 
 // Routes and middleware
 // app.use(/* ... */)
 app.use(cors());
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 app.get('/clipboard', function (req,res) {
-  res.send(clipboard);
-  res.status(200).send();
+  res.status(200).send(clipboard);
 });
 
+app.post('/user/update/', function (req, res) {
+  console.log(req.body.data);
+  res.status(200).send('nothing to see here');
+})
 // Error handlers
 app.use(function fourOhFourHandler (req, res) {
   res.status(404).send();

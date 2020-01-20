@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import getOneUser from '../resources/getOneUser.js';
+import postOneUser from '../resources/postOneUser.js';
 import emptyUserObject from '../resources/emptyUserObject.js';
 
 import List from './list';
@@ -12,10 +13,15 @@ let userName = '';
 export default (props) => {
   // emptyUserObject is to make sure tabs is available when component mounts
   const [userObject, setUserObject] = useState(emptyUserObject);
+  const [hasGetRun, setHasGetRun] = useState(false);
 
   useEffect(() => {
-    getOneUser(setUserObject, userName);
+    getOneUser(setUserObject, userName, setHasGetRun);
   }, [])
+
+  useEffect(() => {
+    if (hasGetRun) { postOneUser(userObject, userName) };
+  }, [userObject])
 
   // Mapping tabs as a property in the userObject
   let tabs = userObject.data.tabs;

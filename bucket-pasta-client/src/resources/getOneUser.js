@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 // username is for future feature
-export default (setClipboard, userName) => {
+export default (setUserObject, userName, setHasGetRun) => {
   axios.get(`http://localhost:1234/clipboard`)
     .then(res => {
       const clipboardResponse = res.data;
-      setClipboard(clipboardResponse);
+      setUserObject(clipboardResponse);
+      setHasGetRun(true);
     })
 }
