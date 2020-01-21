@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './form.scss';
 
 export default (props) => {
+  let defaultValue = props.value;
+  let placeholder = props.placeholder;
   let tabNumber = props.tabNumber;
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(defaultValue);
 
   const handleChange = (e) => {
     let newClipboardItem = e.target.value;
@@ -11,7 +13,7 @@ export default (props) => {
   }
 
   const handleSubmit = (e) => {
-    props.addOneItemToClipboard(value, tabNumber);
+    props.formHandler(value, tabNumber);
     setValue('');
     e.preventDefault();
   }
@@ -21,7 +23,8 @@ export default (props) => {
       <input
         onChange={handleChange}
         value={value} type="text"
-        placeholder={`This is where your pastie goes, we are in tab number ${tabNumber}`}>
+        placeholder={placeholder}
+        >
       </input>
     </form>
   )
