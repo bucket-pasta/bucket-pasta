@@ -6,6 +6,7 @@ const cors = require('cors');
 // Create the express app
 const app = express();
 const bodyParser = require('body-parser')
+let inMemoryUserObject
 
 // Routes and middleware
 // app.use(/* ... */)
@@ -18,11 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/clipboard', function (req,res) {
-  res.status(200).send(clipboard);
+  res.status(200).send(inMemoryUserObject || clipboard);
 });
 
 app.post('/user/update/', function (req, res) {
-  console.log(req.body.data);
+  inMemoryUserObject = req.body;
   res.status(200).send('nothing to see here');
 })
 // Error handlers
