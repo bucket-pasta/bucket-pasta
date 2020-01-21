@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
 import copyToClipboard from './copyToClipboard.js'
 
 export default (props) => {
@@ -16,6 +16,9 @@ export default (props) => {
       </button>
       <button onClick={() => deleteItem(tabNumber, clipIdx)} >
       <FontAwesomeIcon icon={faTrash} />
+      </button>
+      <button>
+        <FontAwesomeIcon icon={faEdit}/>
       </button>
     </li>
   );
