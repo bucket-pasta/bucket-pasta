@@ -32,12 +32,18 @@ export default (props) => {
     setUserObject(changedObject);
   }
 
+  let updateOneItem = (updatedItemTabIdx, updatedItemIdx, updatedItemText) => {
+    let changedObject = { ...userObject };
+    changedObject.data.tabs[updatedItemTabIdx].clipboard[updatedItemIdx] = updatedItemText;
+    setUserObject(changedObject);
+  }
+
   let removeOneItemFromClipboard = (removedItemTabIdx, removedItemIdx) => {
     let changedObject = { ...userObject };
     let modifiedClipboard = changedObject.data.tabs[removedItemTabIdx].clipboard.filter(
       (item, idx) => idx !== removedItemIdx)
     changedObject.data.tabs[removedItemTabIdx].clipboard = modifiedClipboard
-    setUserObject(changedObject)
+    setUserObject(changedObject);
   }
   return (
     <ul>
@@ -45,14 +51,17 @@ export default (props) => {
         return (
           <div className="tab">
             <Form
-              addOneItemToClipboard={addOneItemToClipboard}
+              formHandler={addOneItemToClipboard}
               tabNumber={idx}
+              placeholder={'Enter text'}
             />
             <h1>{tab.tabTitle}</h1>
             <List
               deleteItem={removeOneItemFromClipboard}
+              updateItem={updateOneItem}
               clipboard={tab.clipboard}
-              tabNumber={idx} />
+              tabNumber={idx}
+            />
           </div>)
       })}
     </ul>
