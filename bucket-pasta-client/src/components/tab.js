@@ -28,7 +28,7 @@ export default (props) => {
 
   let addOneItemToClipboard = (newItem, tabNumber) => {
     let changedObject = { ...userObject };
-    changedObject.data.tabs[tabNumber].clipboard.push(newItem);
+    changedObject.data.tabs[tabNumber].clipboard.unshift(newItem);
     setUserObject(changedObject);
   }
 
