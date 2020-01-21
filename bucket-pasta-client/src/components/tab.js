@@ -21,7 +21,7 @@ export default (props) => {
 
   useEffect(() => {
     if (hasGetRun) { postOneUser(userObject, userName) };
-  }, [userObject])
+  }, [userObject, hasGetRun])
 
   // Mapping tabs as a property in the userObject
   let tabs = userObject.data.tabs;
@@ -32,6 +32,13 @@ export default (props) => {
     setUserObject(changedObject);
   }
 
+  let removeOneItemFromClipboard = (removedItemTabIdx, removedItemIdx) => {
+    let changedObject = { ...userObject };
+    let modifiedClipboard = changedObject.data.tabs[removedItemTabIdx].clipboard.filter(
+      (item, idx) => idx !== removedItemIdx)
+    changedObject.data.tabs[removedItemTabIdx].clipboard = modifiedClipboard
+    setUserObject(changedObject)
+  }
   return (
     <ul>
       {tabs && tabs.map((tab, idx) => {
@@ -39,10 +46,13 @@ export default (props) => {
           <div className="tab">
             <Form
               addOneItemToClipboard={addOneItemToClipboard}
-              tabNumber={idx} />
+              tabNumber={idx}
+            />
             <h1>{tab.tabTitle}</h1>
             <List
-              clipboard={tab.clipboard} />
+              deleteItem={removeOneItemFromClipboard}
+              clipboard={tab.clipboard}
+              tabNumber={idx} />
           </div>)
       })}
     </ul>
