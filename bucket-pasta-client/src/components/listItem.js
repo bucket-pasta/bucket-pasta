@@ -1,13 +1,12 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faTrash } from '@fortawesome/free-solid-svg-icons'
 import copyToClipboard from './copyToClipboard.js'
 
-
 export default (props) => {
-  let tabNumber = props.tabNumber
-  let clipIdx = props.clipIdx
-  let deleteItem = props.deleteItem
+  let tabNumber = props.tabNumber;
+  let clipIdx = props.clipIdx;
+  let deleteItem = props.deleteItem;
 
   return (
     <li className="listItems">
@@ -16,7 +15,7 @@ export default (props) => {
       <FontAwesomeIcon icon={faCopy} />
       </button>
       <button onClick={() => deleteItem(tabNumber, clipIdx)} >
-
+      <FontAwesomeIcon icon={faTrash} />
       </button>
     </li>
   );
