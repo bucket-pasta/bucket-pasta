@@ -17,6 +17,8 @@ export default (props) => {
   const [hasGetRun, setHasGetRun] = useState(false);
   const [online, setOnline] = useState(true);
 
+  if(null){setOnline(true)}
+
   useEffect((online) => {
     if (online) {
       loadUserData(userName, setHasGetRun, 'server')
