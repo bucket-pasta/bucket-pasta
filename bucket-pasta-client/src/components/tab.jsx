@@ -20,15 +20,23 @@ export default (props) => {
 
   useEffect(() => {
     // getOneUser(setUserObject, userName, setHasGetRun);
-    loadUserData(userName, setHasGetRun, 'server')
+    loadUserData(userName, setHasGetRun, 'localStorage')
       .then(clipboardResponse => {
         setUserObject(clipboardResponse);
         setHasGetRun(true);
       })
+    // loadUserData(userName, setHasGetRun, 'server')
+    //   .then(clipboardResponse => {
+    //     setUserObject(clipboardResponse);
+    //     setHasGetRun(true);
+    //   })
   }, [])
 
   useEffect(() => {
-    if (hasGetRun) { saveUserData(userObject, userName, 'server') };
+    if (hasGetRun) {
+      saveUserData(userObject, userName, 'localStorage')
+      saveUserData(userObject, userName, 'server')
+    };
   }, [userObject, hasGetRun])
 
   // Mapping tabs as a property in the userObject

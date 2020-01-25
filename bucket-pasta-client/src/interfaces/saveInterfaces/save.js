@@ -9,8 +9,8 @@ export default (objectBeingSaved, userName, saveToWhere) => new Promise((res,rej
           .then(response => res(response))
           break;
         case "localStorage":
-          saveToLocalStorage(objectBeingSaved)
-          .then(response => res(response))
+          saveToLocalStorage(objectBeingSaved, userName)
+          res(JSON.parse(localStorage.getItem('userObject')));
         break;
         default:
           rej('save location not specified correctly')

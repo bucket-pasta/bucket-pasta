@@ -8,5 +8,3 @@ export default (userName) => new Promise((res, rej) => {
       res(clipboardResponse)
     })
 })
-
-
