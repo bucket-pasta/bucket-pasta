@@ -6,7 +6,6 @@ export default (userName, setHasGetRun, loadFromWhere) => new Promise((res, rej)
       case "server":
         loadFromServer(userName)
           .then(response => {
-            console.log('oof this finished')
             res(response)
           })
         break;

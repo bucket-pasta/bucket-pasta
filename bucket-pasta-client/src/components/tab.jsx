@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import getOneUser from '../resources/getOneUser.js';
 import loadUserData from '../interfaces/loadInterfaces/load.js';
 import saveUserData from '../interfaces/saveInterfaces/save.js';
 
-// import postOneUser from '../resources/postOneUser.js';
 import emptyUserObject from '../resources/emptyUserObject.js';
 
 import List from './list.jsx';
@@ -17,20 +15,24 @@ export default (props) => {
   // emptyUserObject is to make sure tabs is available when component mounts
   const [userObject, setUserObject] = useState(emptyUserObject);
   const [hasGetRun, setHasGetRun] = useState(false);
+  const [online, setOnline] = useState(true);
 
-  useEffect(() => {
-    // getOneUser(setUserObject, userName, setHasGetRun);
-    loadUserData(userName, setHasGetRun, 'localStorage')
+  useEffect((online) => {
+    if (online) {
+      loadUserData(userName, setHasGetRun, 'server')
       .then(clipboardResponse => {
         setUserObject(clipboardResponse);
         setHasGetRun(true);
       })
-    // loadUserData(userName, setHasGetRun, 'server')
-    //   .then(clipboardResponse => {
-    //     setUserObject(clipboardResponse);
-    //     setHasGetRun(true);
-    //   })
-  }, [])
+    }
+    else {
+      loadUserData(userName, setHasGetRun, 'localStorage')
+      .then(clipboardResponse => {
+        setUserObject(clipboardResponse);
+        setHasGetRun(true);
+      })
+    }
+  }, [online])
 
   useEffect(() => {
     if (hasGetRun) {
