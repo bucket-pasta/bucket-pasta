@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import getOneUser from '../resources/getOneUser.js';
-import postOneUser from '../resources/postOneUser.js';
+import loadUserData from '../interfaces/loadInterfaces/load.js';
+import saveUserData from '../interfaces/saveInterfaces/save.js';
+
 import emptyUserObject from '../resources/emptyUserObject.js';
 
-import List from './list';
-import Form from './form';
+import List from './list.jsx';
+import Form from './form.jsx';
 import './tab.scss'
 
 // username is for future feature, placeholder
@@ -14,13 +15,30 @@ export default (props) => {
   // emptyUserObject is to make sure tabs is available when component mounts
   const [userObject, setUserObject] = useState(emptyUserObject);
   const [hasGetRun, setHasGetRun] = useState(false);
+  const [online, setOnline] = useState(true);
+
+  useEffect((online) => {
+    if (online) {
+      loadUserData(userName, setHasGetRun, 'server')
+      .then(clipboardResponse => {
+        setUserObject(clipboardResponse);
+        setHasGetRun(true);
+      })
+    }
+    else {
+      loadUserData(userName, setHasGetRun, 'localStorage')
+      .then(clipboardResponse => {
+        setUserObject(clipboardResponse);
+        setHasGetRun(true);
+      })
+    }
+  }, [online])
 
   useEffect(() => {
-    getOneUser(setUserObject, userName, setHasGetRun);
-  }, [])
-
-  useEffect(() => {
-    if (hasGetRun) { postOneUser(userObject, userName) };
+    if (hasGetRun) {
+      saveUserData(userObject, userName, 'localStorage')
+      saveUserData(userObject, userName, 'server')
+    };
   }, [userObject, hasGetRun])
 
   // Mapping tabs as a property in the userObject
