@@ -20,17 +20,17 @@ export default (props) => {
   useEffect((online) => {
     if (online) {
       loadUserData(userName, setHasGetRun, 'server')
-      .then(clipboardResponse => {
-        setUserObject(clipboardResponse);
-        setHasGetRun(true);
-      })
+        .then(clipboardResponse => {
+          setUserObject(clipboardResponse);
+          setHasGetRun(true);
+        })
     }
     else {
       loadUserData(userName, setHasGetRun, 'localStorage')
-      .then(clipboardResponse => {
-        setUserObject(clipboardResponse);
-        setHasGetRun(true);
-      })
+        .then(clipboardResponse => {
+          setUserObject(clipboardResponse);
+          setHasGetRun(true);
+        })
     }
   }, [online])
 
@@ -67,7 +67,7 @@ export default (props) => {
     <ul>
       {tabs && tabs.map((tab, idx) => {
         return (
-          <div className="tab">
+          <div key={idx} className="tab">
             <Form
               formHandler={addOneItemToClipboard}
               tabNumber={idx}
