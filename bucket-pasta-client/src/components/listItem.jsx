@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
 import copyToClipboard from './copyToClipboard.js'
-import Form from './form.js';
+import Form from './form.jsx';
 
 export default (props) => {
   let [ isItemBeingEdited, setIsItemBeingEdited ] = useState(false);

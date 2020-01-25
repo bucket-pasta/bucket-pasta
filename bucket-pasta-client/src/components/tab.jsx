@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import getOneUser from '../resources/getOneUser.js';
-import postOneUser from '../resources/postOneUser.js';
+// import getOneUser from '../resources/getOneUser.js';
+import loadUserData from '../interfaces/loadInterfaces/load.js';
+import saveUserData from '../interfaces/saveInterfaces/save.js';
+
+// import postOneUser from '../resources/postOneUser.js';
 import emptyUserObject from '../resources/emptyUserObject.js';
 
-import List from './list';
-import Form from './form';
+import List from './list.jsx';
+import Form from './form.jsx';
 import './tab.scss'
 
 // username is for future feature, placeholder
@@ -16,11 +19,16 @@ export default (props) => {
   const [hasGetRun, setHasGetRun] = useState(false);
 
   useEffect(() => {
-    getOneUser(setUserObject, userName, setHasGetRun);
+    // getOneUser(setUserObject, userName, setHasGetRun);
+    loadUserData(userName, setHasGetRun, 'server')
+      .then(clipboardResponse => {
+        setUserObject(clipboardResponse);
+        setHasGetRun(true);
+      })
   }, [])
 
   useEffect(() => {
-    if (hasGetRun) { postOneUser(userObject, userName) };
+    if (hasGetRun) { saveUserData(userObject, userName, 'server') };
   }, [userObject, hasGetRun])
 
   // Mapping tabs as a property in the userObject

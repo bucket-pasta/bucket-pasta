@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Tab from './components/tab.js';
+import Tab from './components/tab.jsx';
 
 function App() {
   let arr = ["hello", "goodbye", "oof", "yikes"];
