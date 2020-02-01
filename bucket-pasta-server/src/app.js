@@ -31,6 +31,9 @@ app.use(express.urlencoded({extended:true}));
 
 // Static Routes
 app.use('/docs', express.static('docs'));
+app.use('/', express.static('build'));
+
+
 
 // Routes
 app.use(v1Router);
