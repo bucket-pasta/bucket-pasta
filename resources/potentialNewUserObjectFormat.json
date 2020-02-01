@@ -1,0 +1,71 @@
+{
+  "tabs": [
+    {
+      "displayName": "Awesome Tab #1",
+      "theme": "{#tabID {background-color: 'sameastabthemestringifiedcss'}}",
+      "type": "multi",
+      "tabUUID": "b704cbda-ecd7-4028-aa63-508edd5d05d0",
+      "canEdit": true,
+      "access": {
+        "users": [
+          {
+            "displayName": "User Bobberton",
+            "username": "bob@bob.com",
+            "permissions": {
+              "read": true,
+              "write": true,
+              "delete": false
+            }
+          }
+        ],
+        "groups": [
+          {
+            "displayName": "Bobs madmen",
+            "groupUUID": "93e10344-47a4-458f-bdb3-ac72f094d316",
+            "permissions": {
+              "read": true,
+              "write": true,
+              "delete": false
+            }
+          }
+        ],
+        "public": false
+      },
+      "content": [
+        {
+          "displayName": "title for the pastie, can be null",
+          "theme": "{#pastyID {background-color: 'sameastabthemestringifiedcss'}}",
+          "type": "string",
+          "pastieUUID": "93e10344-47a4-458f-bdb3-ac72f094d316",
+          "canEdit": true,
+          "content": "This is the text the user will see and copy into their clipboard",
+          "access": {
+            "users": [
+              {
+                "displayName": "User Bobberton",
+                "username": "bob@bob.com",
+                "permissions": {
+                  "read": true,
+                  "write": true,
+                  "delete": false
+                }
+              }
+            ],
+            "groups": [
+              {
+                "displayName": "Bobs madmen",
+                "groupUUID": "93e10344-47a4-458f-bdb3-ac72f094d316",
+                "permissions": {
+                  "read": true,
+                  "write": true,
+                  "delete": false
+                }
+              }
+            ],
+            "public": false
+          }
+        }
+      ]
+    }
+  ]
+}
