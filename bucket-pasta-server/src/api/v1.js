@@ -11,7 +11,7 @@ const cwd = process.cwd();
 
 const express = require('express');
 
-const auth = require('../auth/middleware.js.js');
+const auth = require('../auth/middleware.js');
 const modelFinder = require(`${cwd}/src/middleware/model-finder.js`);
 
 const router = express.Router();
