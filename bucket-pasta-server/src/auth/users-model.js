@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-require('./roles-model.js');
+require('./roles-model.js.js');
 
 const users = new mongoose.Schema({
   username: {type: String, required: true, unique: true},

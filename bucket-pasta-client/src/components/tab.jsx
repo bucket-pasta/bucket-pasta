@@ -19,7 +19,7 @@ export default (props) => {
 
   if(null){setOnline(true)}
 
-  useEffect((online) => {
+  useEffect(() => {
     if (online) {
       loadUserData(userName, setHasGetRun, 'server')
         .then(clipboardResponse => {

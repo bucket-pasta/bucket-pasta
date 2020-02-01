@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * API Router Module (V1)
  * Integrates with various models through a common Interface (.get(), .post(), .put(), .delete())
@@ -10,10 +11,11 @@ const cwd = process.cwd();
 
 const express = require('express');
 
-const auth = require('../auth/middleware.js');
+const auth = require('../auth/middleware.js.js');
 const modelFinder = require(`${cwd}/src/middleware/model-finder.js`);
 
 const router = express.Router();
+
 
 // Evaluate the model, dynamically
 router.param('model', modelFinder.load);
@@ -55,7 +57,18 @@ router.get('/api/v1/:model/:id', auth('read'), handleGetOne);
 router.put('/api/v1/:model/:id', auth('update'), handlePut);
 router.delete('/api/v1/:model/:id', auth('delete'), handleDelete);
 
+//this is so that we don't break the client when we flip to the real-server
 
+const clipboard = require('../../../resources/sampleUserObject.js');
+let inMemoryUserObject
+
+router.get('/clipboard', function (req,res) {
+  res.status(200).send(inMemoryUserObject || clipboard);
+});
+router.post('/user/update/', function (req, res) {
+  inMemoryUserObject = req.body;
+  res.status(200).send('nothing to see here');
+})
 
 // Route Handlers
 function handleGetAll(request,response,next) {
