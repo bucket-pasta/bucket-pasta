@@ -19,7 +19,7 @@ CREATE TABLE pasties(
   name VARCHAR(50),
   owner VARCHAR(50),
   public BOOLEAN NOT NULL,
-  usersCanView VARCHAR()
+  usersCanView VARCHAR(50)
 )
 CREATE TABLE permissions(
   uuid VARCHAR(36),
@@ -34,9 +34,3 @@ CREATE TABLE groups(
   admin BOOLEAN NOT NULL,
   user VARCHAR(50),
 )
-
-INSERT INTO permissions(uuid) SELECT DISTINCT uuid FROM tabs;
-
-UPDATE permissions SET groupAccess=groups.groupName WHERE uuid= groups.uuid;
-
-UPDATE permissions SET userAccess=tabs.usersCanView WHERE uuid= 
