@@ -63,10 +63,12 @@ const clipboard = require('../../../resources/sampleUserObject.js');
 let inMemoryUserObject
 
 router.get('/clipboard', function (req,res) {
+  console.log(JSON.stringify(inMemoryUserObject || clipboard))
   res.status(200).send(inMemoryUserObject || clipboard);
 });
 router.post('/user/update/', function (req, res) {
   inMemoryUserObject = req.body;
+  console.log(JSON.stringify(inMemoryUserObject))
   res.status(200).send('nothing to see here');
 })
 
