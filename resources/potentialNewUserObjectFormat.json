@@ -1,4 +1,5 @@
-{
+{ 
+  "userName":"Adam",
   "tabs": [
     {
       "displayName": "Awesome Tab #1",
