@@ -48,6 +48,7 @@ export default (props) => {
 
   let addOneItemToClipboard = (newItem, tabNumber) => {
     let changedObject = { ...userObject };
+    console.log(newItem)
     changedObject.tabs[tabNumber].pasties.unshift(newItem);
     setUserObject(changedObject);
   }
