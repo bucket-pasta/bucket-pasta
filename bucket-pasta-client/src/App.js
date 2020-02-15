@@ -2,7 +2,8 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
 import { } from 'react-router'
 import './App.css';
@@ -15,6 +16,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
+        <Link to="/login">signup</Link>
           <Tab />
         </Route>
         <Route path="/login">

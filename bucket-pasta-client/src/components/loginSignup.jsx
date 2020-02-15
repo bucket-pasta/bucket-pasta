@@ -1,27 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cookies from '../interfaces/cookies.js'
-import jwt from 'jsonwebtoken';
+import jwt, { sign } from 'jsonwebtoken';
+import axios from 'axios'
 
+const expirationTime = 14
+const secret = 'thisisaverysecuresecret'
 
-function loginHandler(e) {
-    e.preventDefault()
-    // try to log in
-    //parse the server response into its JWT
-    // mocked token here
-    let authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNTE3MDlkYTMtMzBmZi00YTVlLTlkNGQtN2U2MDljNWU5NWMzIiwibmFtZSI6IkxlZS1Sb3kgS2luZyIsInN0YXR1cyI6IlJFUExJQ0FOVCIsInRhYnMiOlt7InRleHQiOiJMb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgY29uc3VsIGNvcGlvc2FlIG1lbCBhdC4gU2l0IG5vIGVsaXRyIGRldHJhY3RvIHNjcmlwc2VyaXQsIGVhIHByaSBkaWN1bnQgY29waW9zYWUgaXJhY3VuZGlhLCBpbGx1ZCBhZXRlcm5vIHBlcnNlcXVlcmlzIHVzdSBlaS4gRGljYW0gZ3ViZXJncmVuIHBybyBhdCwgcmVnaW9uZSBwcmFlc2VudCBhZGlwaXNjaW5nIG5lYyB0ZSwgbWVudGl0dW0gb3BvcnRlcmUgdmVsIGV1LiBBZG1vZHVtIG1vbGVzdGlhZSBldSBwZXIuIFZpbSBldCBkaWFtIGVzc2VudCByZWZvcm1pZGFucy4gVGUgbmVjIGZlcnJpIGxhYml0dXIgaW1wZXJkaWV0LCBubyB1bnVtIGZ1aXNzZXQgZXN0LiJ9LHt9LHt9XX0.u8GyyBc80gxhutTi2YY7PcWnzpdIj_dHDKaFa015Y2I'
-    jwt.verify(authToken, 'ultrasecret', function (err, decoded) {
-        if (err) { throw err }
-        console.log(decoded) // bar
-    });
-    jwt.verify(authToken, 'wrongsecret', function (err, decoded) {
-        if (err) { throw err }
-        console.log(decoded) // bar
-    });
-    Cookies.setCookie('X-bucketpasta-auth', authToken, 14)
+async function signup(username, password) {
+  const url = '/signup'
+  const jot = await axios.post(url, {
+    username: username,
+    password: password
+  })
+  //TODO: add expiration information to JWTs
+  const parsedToken = jwt.verify(jot.data, secret)
+  Cookies.setCookie('X-bucketpasta-auth', jot.data, expirationTime)
 }
 
-export default () => <form>
-    <input type="text" label="username" />
-    <input type="text" label="password" />
-    <button onClick={loginHandler}>Log in</button>
-</form>
+async function signinBearer(){
+  const url = '/signin'
+  const Authorization = `Bearer ${Cookies.getCookie('X-bucketpasta-auth')}`
+  const jot = await axios.post(url, {},{headers:{Authorization}}).catch(e=>e)
+  const parsedToken = jwt.verify(jot.data, secret)
+  Cookies.setCookie('X-bucketpasta-auth', jot.data, expirationTime)
+}
+
+async function signinBasic(username,password){
+  const url = '/signin'
+  const Authorization = `Basic ${btoa(`${username}:${password}`)}`
+  const jot = await axios.post(url, {},{headers:{Authorization}}).catch(e=>e)
+  const parsedToken = jwt.verify(jot.data, secret)
+  Cookies.setCookie('X-bucketpasta-auth', jot.data, expirationTime)
+  console.log({parsedToken})
+}
+
+
+export default () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function validateForm() {
+    return email.length > 0 && password.length > 0;
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log({ email, password })
+    signup(email,password)
+    console.log(Cookies.getCookie('X-bucketpasta-auth'))
+  }
+
+  return <form onSubmit={handleSubmit}>
+    <input type="text" label="email" onChange={e => setEmail(e.target.value)} value={email} />
+    <input type="text" label="password" onChange={e => setPassword(e.target.value)} value={password} />
+    <button disabled={!validateForm()} type="submit">
+      Sign-up
+        </button>
+  </form>
+}
