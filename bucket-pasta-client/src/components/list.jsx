@@ -8,6 +8,7 @@ export default (props) => {
   let tabNumber = props.tabNumber;
   let deleteItem = props.deleteItem;
   let updateItem = props.updateItem;
+  console.log(pasties,'BISCUITS')
   return (
     <ul>
       {pasties.map((item,clipIdx) => <ListItem key={clipIdx} text={item.content} clipIdx={clipIdx} tabNumber={tabNumber} deleteItem={deleteItem} updateItem={updateItem}/>)}

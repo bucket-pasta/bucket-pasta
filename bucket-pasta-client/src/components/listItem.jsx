@@ -14,6 +14,7 @@ export default (props) => {
   const middlePerson = (value) => {
     updateItem(tabNumber, clipIdx, value);
     setIsItemBeingEdited(!isItemBeingEdited);
+    console.log(props.text, 'HURRRR')
   }
 
   return (

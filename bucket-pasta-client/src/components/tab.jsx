@@ -48,14 +48,19 @@ export default (props) => {
 
   let addOneItemToClipboard = (newItem, tabNumber) => {
     let changedObject = { ...userObject };
-    console.log(newItem)
-    changedObject.tabs[tabNumber].pasties.unshift(newItem);
+    let newItemObj = {
+      displayName: "",
+      theme: "",
+      type: "string",
+      content: newItem,
+    }
+    changedObject.tabs[tabNumber].pasties.unshift(newItemObj);
     setUserObject(changedObject);
   }
 
   let updateOneItem = (updatedItemTabIdx, updatedItemIdx, updatedItemText) => {
     let changedObject = { ...userObject };
-    changedObject.tabs[updatedItemTabIdx].pasties[updatedItemIdx] = updatedItemText;
+    changedObject.tabs[updatedItemTabIdx].pasties[updatedItemIdx].content = updatedItemText;
     setUserObject(changedObject);
   }
 
