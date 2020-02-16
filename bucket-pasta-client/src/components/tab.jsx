@@ -44,25 +44,31 @@ export default (props) => {
   }, [userObject, hasGetRun])
 
   // Mapping tabs as a property in the userObject
-  let tabs = userObject.data.tabs;
+  let tabs = userObject.tabs;
 
   let addOneItemToClipboard = (newItem, tabNumber) => {
     let changedObject = { ...userObject };
-    changedObject.data.tabs[tabNumber].clipboard.unshift(newItem);
+    let newItemObj = {
+      displayName: "",
+      theme: "",
+      type: "string",
+      content: newItem,
+    }
+    changedObject.tabs[tabNumber].pasties.unshift(newItemObj);
     setUserObject(changedObject);
   }
 
   let updateOneItem = (updatedItemTabIdx, updatedItemIdx, updatedItemText) => {
     let changedObject = { ...userObject };
-    changedObject.data.tabs[updatedItemTabIdx].clipboard[updatedItemIdx] = updatedItemText;
+    changedObject.tabs[updatedItemTabIdx].pasties[updatedItemIdx].content = updatedItemText;
     setUserObject(changedObject);
   }
 
   let removeOneItemFromClipboard = (removedItemTabIdx, removedItemIdx) => {
     let changedObject = { ...userObject };
-    let modifiedClipboard = changedObject.data.tabs[removedItemTabIdx].clipboard.filter(
+    let modifiedClipboard = changedObject.tabs[removedItemTabIdx].pasties.filter(
       (item, idx) => idx !== removedItemIdx)
-    changedObject.data.tabs[removedItemTabIdx].clipboard = modifiedClipboard
+    changedObject.tabs[removedItemTabIdx].pasties = modifiedClipboard
     setUserObject(changedObject);
   }
   return (
@@ -75,11 +81,11 @@ export default (props) => {
               tabNumber={idx}
               placeholder={'Enter text'}
             />
-            <h1>{tab.tabTitle}</h1>
+            <h1>{tab.displayName}</h1>
             <List
               deleteItem={removeOneItemFromClipboard}
               updateItem={updateOneItem}
-              clipboard={tab.clipboard}
+              pasties={tab.pasties}
               tabNumber={idx}
             />
           </div>)

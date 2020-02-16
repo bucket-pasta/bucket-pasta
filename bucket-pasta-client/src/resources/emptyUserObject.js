@@ -1,13 +1,18 @@
 export default {
-  username: "",
-  data: {
-      tabs: [
+    userName:"",
+    tabs: [
+      {
+        displayName: "",
+        theme: "",
+        type: "",
+        pasties: [
           {
-              tabTitle: '',
-              clipboard: [
-                  ""
-              ]
+            displayName: "",
+            theme: "",
+            type: "",
+            content: "",
           }
-      ]
+        ]
+      }
+    ]
   }
-}
