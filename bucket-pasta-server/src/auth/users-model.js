@@ -84,7 +84,7 @@ users.methods.generateToken = function() {
   let tokenData = {
     id:this._id,
   };
-  return jwt.sign(tokenData, process.env.SECRET || 'changeit' );
+  return jwt.sign(tokenData, process.env.SECRET);
 };
 
 module.exports = mongoose.model('users', users);
