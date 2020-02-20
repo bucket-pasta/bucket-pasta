@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "cd bucket-pasta-client; npm run build; cd .. ; rm -rf bucket-pasta-server/build ;cp -r bucket-pasta-client/build bucket-pasta-server/build ",
+        "build": "cd bucket-pasta-client; npm run build; cd .. ;rm -rf bucket-pasta-server/build ;cp -r bucket-pasta-client/build bucket-pasta-server/build ",
         "start": "npm run build; cd bucket-pasta-server; node index.js"
     },
     "keywords": [],

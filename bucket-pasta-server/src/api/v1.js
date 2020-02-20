@@ -59,13 +59,16 @@ router.delete('/api/v1/:model/:id', auth('delete'), handleDelete);
 
 //this is so that we don't break the client when we flip to the real-server
 
-const clipboard = require('../../../resources/sampleUserObject.js');
+const clipboard = require('../../../resources/potentialNewUserObjectFormat.js');
 let inMemoryUserObject
+
+// router.get('/clipboard', handleUserPageLoad);
 
 router.get('/clipboard', function (req,res) {
   console.log(JSON.stringify(inMemoryUserObject || clipboard))
   res.status(200).send(inMemoryUserObject || clipboard);
 });
+
 router.post('/user/update/', function (req, res) {
   inMemoryUserObject = req.body;
   console.log(JSON.stringify(inMemoryUserObject))
@@ -73,6 +76,14 @@ router.post('/user/update/', function (req, res) {
 })
 
 // Route Handlers
+
+function handleUserPageLoad(request, response,next){
+  request.model.get(request.params.userName)
+  .then(results => {console.log(results);
+    response(200).send(results)
+  })
+}
+
 function handleGetAll(request,response,next) {
   request.model.get()
     .then( data => {
