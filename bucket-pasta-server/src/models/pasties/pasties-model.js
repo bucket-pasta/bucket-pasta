@@ -1,7 +1,7 @@
 'use strict';
 
-const Model = require('../mongo.js.js');
-const schema = require('./pasties-schema.js.js');
+const Model = require('../mongo.js');
+const schema = require('./pasties-schema.js');
 
 /**
  * Class representing a Category.
