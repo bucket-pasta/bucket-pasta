@@ -2,13 +2,13 @@
 
 const mongoose = require('mongoose');
 
-let pasties = require('../pasties/pasties-schema.js');
+let pastiesRef = require('../pasties/pasties-schema.js');
 
 const tab = mongoose.Schema({
     displayName: String,
     theme: String,
     type: String,
-    pasties: [pasties] //not sure if this is doing what I think. It should hopefully read this as an array of objects that look like the pasties schema.
+    pasties: pastiesRef //not sure if this is doing what I think. It should hopefully read this as an array of objects that look like the pasties schema.
 })
 
 

@@ -39,6 +39,7 @@ class Model {
    */
   create(record) {
     console.log('r',record);
+    record.markModified('children');
     let newRecord = new this.schema(record);
     console.log('n', newRecord);
     return newRecord.save();
