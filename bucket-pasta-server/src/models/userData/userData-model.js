@@ -1,14 +1,15 @@
 'use strict';
 
 const Model = require('../mongo.js');
-const schema = require('./pasties-schema.js');
+const schema = require('./userData-schema.js');
 
 /**
  * Class representing a Category.
  * @extends Model
  */
-class Pasties extends Model {
+class UserData extends Model {
   constructor() { super(schema); }
+
 }
 
-module.exports = Pasties;
+module.exports = UserData;
