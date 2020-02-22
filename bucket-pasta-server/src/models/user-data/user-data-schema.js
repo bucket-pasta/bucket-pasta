@@ -2,11 +2,23 @@
 
 const mongoose = require('mongoose');
 
-let tabsRef = require('../tabs/tabs-schema.js');
+const pastiesSchema = mongoose.Schema({
+    displayName: String,
+    theme: String,
+    type: String,
+    content: String
+})
+
+const tabsSchema = mongoose.Schema({
+    displayName: String,
+    theme: String,
+    type: String,
+    pasties: [pastiesSchema]
+})
 
 const userData = mongoose.Schema({
     userName: String,
-    tabs: [tabsRef],
+    tabs: [tabsSchema],
 })
 
 
