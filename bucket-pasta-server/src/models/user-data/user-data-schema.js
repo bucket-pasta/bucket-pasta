@@ -2,24 +2,30 @@
 
 const mongoose = require('mongoose');
 
-const pastiesSchema = mongoose.Schema({
-    displayName: String,
-    theme: String,
-    type: String,
-    content: String
-})
+// const pastiesSchema = mongoose.Schema({
+//     displayName: String,
+//     theme: String,
+//     type: String,
+//     content: String
+// })
 
-const tabsSchema = mongoose.Schema({
-    displayName: String,
-    theme: String,
-    type: String,
-    pasties: [pastiesSchema]
+// const tabsSchema = mongoose.Schema({
+//     displayName: String,
+//     theme: String,
+//     type: String,
+//     pasties: [pastiesSchema]
+// })
+
+const Data = mongoose.Schema({
+    tabs: [Object]
 })
 
 const userData = mongoose.Schema({
     userName: String,
-    tabs: [tabsSchema],
+    data: Data,
+
 })
+
 
 
 module.exports = mongoose.model('UserData', userData);

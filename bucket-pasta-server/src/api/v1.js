@@ -52,7 +52,6 @@ router.get('/api/v1/:model', auth('read'), handleGetAll);
  * @returns {Error}  500 - Unexpected error
  */
 router.post('/api/v1/:model', auth('create'), handlePost);
-
 router.get('/api/v1/:model/:id', auth('read'), handleGetOne);
 router.put('/api/v1/:model/:id', auth('update'), handlePut);
 router.delete('/api/v1/:model/:id', auth('delete'), handleDelete);
@@ -77,12 +76,7 @@ router.post('/user/update/', function (req, res) {
 
 // Route Handlers
 
-function handleUserPageLoad(request, response,next){
-  request.model.get(request.params.userName)
-  .then(results => {console.log(results);
-    response(200).send(results)
-  })
-}
+
 
 function handleGetAll(request,response,next) {
   request.model.get()

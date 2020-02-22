@@ -9,6 +9,7 @@ const schema = require('./user-data-schema.js');
  */
 class UserData extends Model {
   constructor() { super(schema); }
+
 }
 
 module.exports = UserData;
