@@ -39,7 +39,6 @@ class Model {
    */
   create(record) {
     console.log('r',record);
-    
     let newRecord = new this.schema(record);
     console.log('n', newRecord);
     return newRecord.save();
