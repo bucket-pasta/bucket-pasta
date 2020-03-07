@@ -2,6 +2,7 @@ import React from 'react'
 import Cookies from '../interfaces/cookies.js'
 import axios from 'axios'
 import jwt, { sign } from 'jsonwebtoken';
+import cookies from '../interfaces/cookies.js';
 
 //TODO: backend server needs to vend the actual expiration in addition to its issue date
 const expirationTime = 14
@@ -11,6 +12,8 @@ const secret = process.env.SECRET || 'thisisaverysecuresecret'
 function generateAuthHeader() {
     // check if users auth is still valid
     const cookie = Cookies.getCookie('X-bucketpasta-auth');
+    let  id = getUserId()
+    console.log('THE ID IS RIGHT + HEREREEEE',id)
     // if valid token in cookies pass
     // else create valid token in cookies
     if (!cookie) {
@@ -52,4 +55,13 @@ async function signinBasic(username, password) {
     Cookies.setCookie('X-bucketpasta-auth', jot.data, expirationTime)
     console.log({ parsedToken })
 }
+
+function getUserId(){
+    const cookie = Cookies.getCookie('X-bucketpasta-auth');
+    const parsedToken = jwt.verify(jwt.data, secret)
+    
+    return parsedToken.id
+
+}
+
 export { generateAuthHeader, signinBasic }
