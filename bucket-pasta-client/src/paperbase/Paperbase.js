@@ -14,7 +14,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Bucket Pasta
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -152,8 +152,11 @@ const styles = {
   },
   main: {
     flex: 1,
-    padding: theme.spacing(6, 4),
+    padding: theme.spacing(2, 1),
     background: '#eaeff1',
+  },
+  content:{
+    padding: theme.spacing(2,1),
   },
   footer: {
     padding: theme.spacing(2),
@@ -189,7 +192,11 @@ function Paperbase(props) {
         <div className={classes.app}>
           <Header onDrawerToggle={handleDrawerToggle} />
           <main className={classes.main}>
-            <Content text="this is some text"/>
+            <Content className={classes.content} text="this is some text"/>
+            <Content className={classes.content} text="this is some different text"/>
+            <Content className={classes.content} text="this is some more different text"/>
+            <Content className={classes.content} text="this is some final text"/>
+
           </main>
           <footer className={classes.footer}>
             <Copyright />
